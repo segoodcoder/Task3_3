@@ -7,10 +7,11 @@ public class Car {
 
     private final String brand;
     private final String model;
-    private final int year;
-    private final int phone;
-    private final int mileage;
-    private final String extraInfo;
+    private final String year;
+    private final String phone;
+    private final String mileage;
+    private final String price;
+//    private final String extraInfo;
 
     public String getBrand() {
         return brand;
@@ -20,32 +21,37 @@ public class Car {
         return model;
     }
 
-    public int getYear() {
+    public String getYear() {
         return year;
     }
 
-    public int getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public int getMileage() {
+    public String getMileage() {
         return mileage;
     }
 
-    public String getExtraInfo() {
-        return extraInfo;
+    public String getPrice(){
+        return price;
     }
 
-    public Path path;
+//    public String getExtraInfo() {
+//        return extraInfo;
+//    }
+//
+//    public Path path;
 
-    public Car(String brand, String model, int year, int phone, int mileage, String extraInfo, Path path) {
+    public Car(String brand, String model, String year, String phone, String mileage, String price) { //String extraInfo, Path path
         this.brand = brand;
         this.model = model;
         this.year = year;
         this.phone = phone;
         this.mileage = mileage;
-        this.extraInfo = extraInfo;
-        this.path = path;
+        this.price = price;
+//        this.extraInfo = extraInfo;
+//        this.path = path;
     }
 
 }
