@@ -5,14 +5,19 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import logic.Car;
 import logic.MarketPlace;
 
 import java.io.IOException;
 import java.net.URL;
+
+import static javafx.scene.paint.Color.GREEN;
+import static javafx.scene.paint.Color.RED;
 
 public class ControllerAdd {
 
@@ -29,6 +34,10 @@ public class ControllerAdd {
     private TextField fieldMileage;
     @FXML
     private TextField fieldPrice;
+    @FXML
+    private Label label;
+
+
 
     @FXML
     void addExtraInfo(ActionEvent event) {
@@ -43,10 +52,9 @@ public class ControllerAdd {
     @FXML
     protected void initialize() {
         brand.setEditable(true);
-        brand.getItems().addAll("Audi", "BMW", "Mercedes");
+        brand.getItems().addAll("Марка", "Audi", "BMW", "Mercedes");
+        brand.setValue("Марка");
     }
-
-
 
     public void addExtraInfo() throws IOException {
         Stage stage = new Stage();
@@ -60,24 +68,34 @@ public class ControllerAdd {
         stage.show();
     }
 
-    public void addNewCar(ActionEvent actionEvent) throws NullPointerException{
+    public void addNewCar() throws NullPointerException{
         try {
             String brandOfCar = brand.getValue();
-            System.out.println(brand);
             String modelOfCar = fieldModel.getText();
-            System.out.println(fieldModel);
             String yearOfCar = fieldYear.getText();
-            System.out.println(fieldYear);
             String phoneOfOwner = fieldPhone.getText();
-            System.out.println(fieldPhone);
             String mileageOfCar = fieldMileage.getText();
-            System.out.println(fieldMileage);
             String priceOfCar = fieldPrice.getText();
-            System.out.println(fieldPrice);
             Car myCar = new Car(brandOfCar, modelOfCar, yearOfCar, phoneOfOwner, mileageOfCar, priceOfCar);
-            System.out.println(myCar);
-            myMP.addNewAd(myCar);
-            System.out.println(myMP);
+            if (!brandOfCar.equals("") && !modelOfCar.equals("") && !yearOfCar.equals("") && !phoneOfOwner.equals("") &&
+            !mileageOfCar.equals("") && !priceOfCar.equals("")) {
+                myMP.addNewAd(myCar);
+                brand.setValue("Марка");
+                fieldModel.clear();
+                fieldYear.clear();
+                fieldPhone.clear();
+                fieldMileage.clear();
+                fieldPrice.clear();
+                label.setText("Объявление успешно добавлено!");
+                label.setTextFill(GREEN);
+            }
+            else {
+                label.setText("Заполните обязательные поля!");
+                label.setTextFill(RED);
+            }
+
+
+
         }
         catch (NullPointerException n) {
             System.out.println("Заполните обязательные поля");

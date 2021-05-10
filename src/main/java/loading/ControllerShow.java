@@ -2,7 +2,9 @@ package loading;
 
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import logic.Car;
@@ -16,23 +18,34 @@ public class ControllerShow {
     @FXML
     ScrollPane sp;
     @FXML
-    VBox vb;
+    HBox hbl;
     @FXML
-    HBox hb;
+    Label brand;
+    @FXML
+    Label model;
+    Label year;
+    Label phone;
+    Label mileage;
+    Label price;
+    MarketPlace myMP = MarketPlace.getInstance();
 
     public void initialize() {
-       LinkedList<Car> ll = MarketPlace.getListOfCars();
-       int size = ll.size();
-       ArrayList<HBox> listOfH = new ArrayList<>();
-       for (int i = 0; i < size; i ++) {
-           HBox hb = new HBox();
-           listOfH.add(hb);
-       }
-       for (int i = 0; i < size; i ++) {
-           vb.getChildren().add((Node) listOfH.get(i));
-       }
-       sp.setContent(vb);
-       System.out.println(size);
+        final VBox fp = new VBox();
+        LinkedList<Car> ll = myMP.getListOfCars();
+        for (Car car: ll) {
+            hbl = new HBox();
+            brand = new Label(car.getBrand() + " ");
+            model = new Label(car.getModel() + " ");
+            year = new Label(car.getYear() + " год ");
+            phone = new Label(" Телефон: " + car.getPhone() + " ");
+            mileage = new Label(car.getMileage() + " км ");
+            price = new Label("Цена: " + car.getPrice() + " руб");
+            hbl.getChildren().addAll(brand, model, year, phone, mileage, price);
+            fp.getChildren().add(hbl);
+
+        }
+        sp.setContent(fp);
+        sp.setPannable(true);
     }
 
 }

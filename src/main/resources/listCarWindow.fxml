@@ -8,17 +8,13 @@
    <children>
       <ScrollPane fx:id="sp" layoutX="25.0" layoutY="66.0" onMouseClicked="#initialize" prefHeight="268.0" prefWidth="549.0">
          <content>
-            <VBox fx:id="vb" prefHeight="266.0" prefWidth="548.0">
+            <HBox prefHeight="100.0" prefWidth="547.0">
                <children>
-                  <HBox prefHeight="100.0" prefWidth="471.0">
-                     <children>
-                        <HBox fx:id="hb" prefHeight="100.0" prefWidth="535.0">
-                           <children>
-                              <ImageView fitHeight="100.0" fitWidth="168.0" pickOnBounds="true" preserveRatio="true" />
-                              <Label text="Label" />
-                           </children></HBox>
-                     </children></HBox>
-               </children></VBox>
+                  <ImageView fitHeight="101.0" fitWidth="192.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label fx:id="brand" text="Label" />
+                  <Label fx:id="model" text="Label" />
+               </children>
+            </HBox>
          </content>
       </ScrollPane>
    </children>

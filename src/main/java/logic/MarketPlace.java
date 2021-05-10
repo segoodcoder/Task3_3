@@ -24,13 +24,6 @@ public class MarketPlace {
         listOfCars.add(car);
     }
 
-    public static void setListOfCars(LinkedList<Car> listOfCars) {
-        MarketPlace.listOfCars = listOfCars;
-    }
-
-    private MarketPlace()
-    {
-
-    }
+    private MarketPlace() { }
 
 }
