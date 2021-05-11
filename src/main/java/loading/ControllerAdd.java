@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -21,6 +22,8 @@ import static javafx.scene.paint.Color.RED;
 
 public class ControllerAdd {
 
+    public Button buttonAddPicture;
+    public Button buttonAdd;
     MarketPlace myMP = MarketPlace.getInstance();
     @FXML
     private ComboBox<String> brand;
@@ -36,12 +39,17 @@ public class ControllerAdd {
     private TextField fieldPrice;
     @FXML
     private Label label;
-
-
+    @FXML
+    private TextField ig;
+    @FXML
+    private Button close;
 
     @FXML
-    void addExtraInfo(ActionEvent event) {
-
+    public void closeWindowAdd (ActionEvent event) throws IOException {
+        Stage stage = (Stage) close.getScene().getWindow();
+        stage.close();
+        MainWindow mw = new MainWindow();
+        mw.start(new Stage());
     }
 
     @FXML
@@ -52,7 +60,7 @@ public class ControllerAdd {
     @FXML
     protected void initialize() {
         brand.setEditable(true);
-        brand.getItems().addAll("Марка", "Audi", "BMW", "Mercedes");
+        brand.getItems().addAll("Марка", "Audi", "BMW", "Mercedes", "Toyota", "Volkswagen", "Volvo");
         brand.setValue("Марка");
     }
 
@@ -76,7 +84,9 @@ public class ControllerAdd {
             String phoneOfOwner = fieldPhone.getText();
             String mileageOfCar = fieldMileage.getText();
             String priceOfCar = fieldPrice.getText();
-            Car myCar = new Car(brandOfCar, modelOfCar, yearOfCar, phoneOfOwner, mileageOfCar, priceOfCar);
+            String pathToPhoto = ig.getText();
+
+            Car myCar = new Car(brandOfCar, modelOfCar, yearOfCar, phoneOfOwner, mileageOfCar, priceOfCar, pathToPhoto);
             if (!brandOfCar.equals("") && !modelOfCar.equals("") && !yearOfCar.equals("") && !phoneOfOwner.equals("") &&
             !mileageOfCar.equals("") && !priceOfCar.equals("")) {
                 myMP.addNewAd(myCar);
@@ -86,6 +96,7 @@ public class ControllerAdd {
                 fieldPhone.clear();
                 fieldMileage.clear();
                 fieldPrice.clear();
+                ig.clear();
                 label.setText("Объявление успешно добавлено!");
                 label.setTextFill(GREEN);
             }

@@ -11,7 +11,8 @@ public class Car {
     private final String phone;
     private final String mileage;
     private final String price;
-//    private final String extraInfo;
+    private final String path;
+
 
     public String getBrand() {
         return brand;
@@ -37,20 +38,22 @@ public class Car {
         return price;
     }
 
+    public String getPath() { return path; }
+
 //    public String getExtraInfo() {
 //        return extraInfo;
 //    }
 //
 //    public Path path;
 
-    public Car(String brand, String model, String year, String phone, String mileage, String price) { //String extraInfo, Path path
+    public Car(String brand, String model, String year, String phone, String mileage, String price, String path) { //String extraInfo, Path path
         this.brand = brand;
         this.model = model;
         this.year = year;
         this.phone = phone;
         this.mileage = mileage;
         this.price = price;
-//        this.extraInfo = extraInfo;
+        this.path = path;
 //        this.path = path;
     }
 

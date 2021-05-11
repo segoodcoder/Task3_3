@@ -6,9 +6,8 @@
 
 <AnchorPane onMouseClicked="#newAuto" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="loading.ControllerAdd">
    <children>
-      <Button fx:id="buttonAddPicture" layoutX="32.0" layoutY="335.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="151.0" text="Прикрепить фото" />
       <Button fx:id="buttonAdd" defaultButton="true" layoutX="199.0" layoutY="335.0" mnemonicParsing="false" onAction="#addNewCar" prefHeight="25.0" prefWidth="159.0" text="Добавить!" textOverrun="CENTER_ELLIPSIS" underline="true" />
-      <CheckBox fx:id="addExtraInfo" layoutX="381.0" layoutY="329.0" mnemonicParsing="false" onAction="#addExtraInfo" prefHeight="38.0" prefWidth="241.0" text="Добавить дополнительную информацию" wrapText="true" />
+      <CheckBox fx:id="addExtraInfo" layoutX="381.0" layoutY="329.0" mnemonicParsing="false" onMouseClicked="#addExtraInfo" prefHeight="38.0" prefWidth="241.0" text="Добавить дополнительную информацию" wrapText="true" />
       <TextField fx:id="fieldModel" layoutX="300.0" layoutY="101.0" prefHeight="25.0" prefWidth="247.0" promptText="Модель" />
       <TextField fx:id="fieldPhone" layoutX="300.0" layoutY="148.0" prefHeight="25.0" prefWidth="247.0" promptText="Телефон" />
       <TextField fx:id="fieldPrice" layoutX="300.0" layoutY="197.0" prefHeight="25.0" prefWidth="247.0" promptText="Цена, руб" />
@@ -21,7 +20,9 @@
       </Label>
       <ComboBox fx:id="brand" layoutX="33.0" layoutY="101.0" onAction="#newAuto" prefHeight="25.0" prefWidth="247.0" promptText="Марка">
       </ComboBox>
-      <Label fx:id="label" layoutX="33.0" layoutY="265.0" prefHeight="17.0" prefWidth="321.0" text="Дополнительная информация не является обязательной" />
+      <Label fx:id="label" layoutX="33.0" layoutY="265.0" prefHeight="17.0" prefWidth="347.0" text="Дополнительная информация и фотография не обязательны" />
+      <TextField fx:id="ig" layoutX="32.0" layoutY="335.0" promptText="Вставьте путь к фотографии" />
+      <Button fx:id="close" layoutX="502.0" layoutY="48.0" mnemonicParsing="false" onAction="#closeWindowAdd" text="Назад" />
 
    </children>
 </AnchorPane>

@@ -24,10 +24,11 @@ public class Controller {
     public Button closeButton;
 
     @FXML
-    public void handleCloseButtonAction() {
-        Stage stage = (Stage) closeButton.getScene().getWindow();
-        stage.close();
-    }
+    private Button add;
+
+    @FXML
+    private Button list;
+
 
     @FXML
     protected void initialize() {
@@ -44,6 +45,9 @@ public class Controller {
 
         stage.setScene(new Scene(root));
         stage.show();
+
+        Stage st = (Stage) add.getScene().getWindow();
+        st.close();
     }
 
     public void startListCarWindow() throws IOException {
@@ -56,6 +60,9 @@ public class Controller {
         Scene sc = new Scene(root);
         stage.setScene(sc);
         stage.show();
+
+        Stage st = (Stage) add.getScene().getWindow();
+        st.close();
     }
 
 }
