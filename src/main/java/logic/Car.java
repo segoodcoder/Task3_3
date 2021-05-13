@@ -1,7 +1,6 @@
 package logic;
 
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.File;
 
 public class Car {
 
@@ -11,8 +10,13 @@ public class Car {
     private final String phone;
     private final String mileage;
     private final String price;
-    private final String path;
+    private final File image;
+    private final String briefInfo;
 
+    @Override
+    public String toString() {
+        return brand + " " + model + " " + year + " " + phone + " " + mileage + " " + price + " " + image.toString() + " " + briefInfo;
+    }
 
     public String getBrand() {
         return brand;
@@ -38,23 +42,22 @@ public class Car {
         return price;
     }
 
-    public String getPath() { return path; }
+    public File getImage() {
+        return image;
+    }
 
-//    public String getExtraInfo() {
-//        return extraInfo;
-//    }
-//
-//    public Path path;
-
-    public Car(String brand, String model, String year, String phone, String mileage, String price, String path) { //String extraInfo, Path path
+    public String getBriefInfo() {
+        return briefInfo;
+    }
+    public Car(String brand, String model, String year, String phone, String mileage, String price, File image, String briefInfo) {
         this.brand = brand;
         this.model = model;
         this.year = year;
         this.phone = phone;
         this.mileage = mileage;
         this.price = price;
-        this.path = path;
-//        this.path = path;
+        this.image = image;
+        this.briefInfo = briefInfo;
     }
 
 }

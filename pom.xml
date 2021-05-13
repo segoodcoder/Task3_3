@@ -8,14 +8,15 @@
     <artifactId>Task3_2</artifactId>
     <version>1.0-SNAPSHOT</version>
     <dependencies>
-        <dependency>
-            <groupId>org.diirt.javafx</groupId>
-            <artifactId>javafx-all</artifactId>
-            <version>3.1.7</version>
-        </dependency>
+
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
+            <version>11.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-fxml</artifactId>
             <version>11.0.2</version>
         </dependency>
     </dependencies>

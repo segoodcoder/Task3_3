@@ -1,6 +1,7 @@
 package loading;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -10,10 +11,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import logic.Car;
 import logic.MarketPlace;
 
+
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
@@ -22,9 +26,8 @@ import static javafx.scene.paint.Color.RED;
 
 public class ControllerAdd {
 
-    public Button buttonAddPicture;
     public Button buttonAdd;
-    MarketPlace myMP = MarketPlace.getInstance();
+
     @FXML
     private ComboBox<String> brand;
     @FXML
@@ -37,12 +40,27 @@ public class ControllerAdd {
     private TextField fieldMileage;
     @FXML
     private TextField fieldPrice;
+
+
     @FXML
     private Label label;
     @FXML
-    private TextField ig;
-    @FXML
     private Button close;
+    @FXML
+    private Button addPhoto;
+    @FXML
+    private TextField briefInfo;
+
+    public File getImage() {
+        return image;
+    }
+
+    private File image;
+
+    public void setImage(File image) {
+        this.image = image;
+    }
+
 
     @FXML
     public void closeWindowAdd (ActionEvent event) throws IOException {
@@ -57,6 +75,12 @@ public class ControllerAdd {
 
     }
 
+    public void addPhotograph() {
+        FileChooser fc = new FileChooser();
+        File f = fc.showOpenDialog(new Stage());
+        setImage(f);
+    }
+
     @FXML
     protected void initialize() {
         brand.setEditable(true);
@@ -64,19 +88,7 @@ public class ControllerAdd {
         brand.setValue("Марка");
     }
 
-    public void addExtraInfo() throws IOException {
-        Stage stage = new Stage();
-        FXMLLoader loader = new FXMLLoader();
-        URL url = getClass().getResource("/extraInfo.fxml");
-        loader.setLocation(url);
-        Pane root = loader.load();
-
-        Scene sc = new Scene(root);
-        stage.setScene(sc);
-        stage.show();
-    }
-
-    public void addNewCar() throws NullPointerException{
+    public void addNewCar() {
         try {
             String brandOfCar = brand.getValue();
             String modelOfCar = fieldModel.getText();
@@ -84,32 +96,40 @@ public class ControllerAdd {
             String phoneOfOwner = fieldPhone.getText();
             String mileageOfCar = fieldMileage.getText();
             String priceOfCar = fieldPrice.getText();
-            String pathToPhoto = ig.getText();
+            File img = getImage();
+            String bi = briefInfo.getText();
 
-            Car myCar = new Car(brandOfCar, modelOfCar, yearOfCar, phoneOfOwner, mileageOfCar, priceOfCar, pathToPhoto);
-            if (!brandOfCar.equals("") && !modelOfCar.equals("") && !yearOfCar.equals("") && !phoneOfOwner.equals("") &&
-            !mileageOfCar.equals("") && !priceOfCar.equals("")) {
-                myMP.addNewAd(myCar);
+            Car myCar = new Car(brandOfCar, modelOfCar, yearOfCar, phoneOfOwner, mileageOfCar, priceOfCar, img, bi);
+            if (!brandOfCar.equals("") && !brandOfCar.equals("Марка") && !modelOfCar.equals("") &&
+            (Integer.parseInt(yearOfCar) >= 1900 ||
+            Integer.parseInt(yearOfCar) <= 2021) && Integer.parseInt(priceOfCar) >= 0 &&
+            Integer.parseInt(mileageOfCar) >= 0 && Integer.parseInt(phoneOfOwner) > 0) {
+                MarketPlace.addNewAd(myCar);
                 brand.setValue("Марка");
                 fieldModel.clear();
                 fieldYear.clear();
                 fieldPhone.clear();
                 fieldMileage.clear();
                 fieldPrice.clear();
-                ig.clear();
+                briefInfo.clear();
+
                 label.setText("Объявление успешно добавлено!");
                 label.setTextFill(GREEN);
+            }
+            else if (Integer.parseInt(yearOfCar) < 1900 || Integer.parseInt(yearOfCar) > 2021 || Integer.parseInt(phoneOfOwner) < 0
+            || Integer.parseInt(priceOfCar) < 0 || Integer.parseInt(mileageOfCar) < 0) {
+                label.setText("Введено некорректное значение!");
+                label.setTextFill(RED);
             }
             else {
                 label.setText("Заполните обязательные поля!");
                 label.setTextFill(RED);
             }
 
-
-
         }
-        catch (NullPointerException n) {
-            System.out.println("Заполните обязательные поля");
+        catch (NumberFormatException n) {
+            label.setText("Пробег, цена, телефон, год - целые числа! Заполните поля или исправьте значения");
+            label.setTextFill(RED);
         }
     }
 }
