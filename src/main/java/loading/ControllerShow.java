@@ -65,7 +65,7 @@ public class ControllerShow {
                 if (car.getImage() != null) {
                     ig.setImage(new Image(car.getImage().toURI().toString()));
                 } else {
-                    ig.setImage(new Image(new File("src/main/java/standard/stockImage.jpg").toURI().toString()));
+                    ig.setImage(new Image(new File("src/main/java/pictures/stockImage.jpg").toURI().toString()));
                 }
                 briefInfo = new Label("\n Краткая информация: " + car.getBriefInfo());
                 hbl.getChildren().addAll(brand, model, year, phone, mileage, price, ig, briefInfo);

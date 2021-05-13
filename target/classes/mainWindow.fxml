@@ -18,4 +18,5 @@
          <Image url="@1.jpg" />
       </image>
    </ImageView>
+   <Label fx:id="l" layoutX="46.0" layoutY="269.0" prefHeight="62.0" prefWidth="204.0" text="Чтобы посмотреть свое объявление, перезапустите программу после добавления" wrapText="true" />
 </AnchorPane>
